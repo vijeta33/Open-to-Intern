@@ -7,6 +7,7 @@ const isValid = function (value) {
     return true;
 }
 
+
 const isValidRequestBody = function (requestBody) {
     return Object.keys(requestBody).length > 0;
 }
@@ -20,8 +21,8 @@ const registerCollege = async function(req, res) {
                 res.status(400).send({ status: false, message: 'Body cannot be empty, Please provide College details' })
                 return
             }
-            //Extract params
-            const { name, fullName, logoLink } = requestBody; //destructuring
+            
+            const { name, fullName, logoLink } = requestBody; 
 
             // Validation starts
             if (!isValid(name)) {
@@ -42,7 +43,7 @@ const registerCollege = async function(req, res) {
                 res.status(400).send({ status: false, message: `${name} college is already registered` })
             }
 
-            const collegeData = { name, fullName, logoLink } //
+            const collegeData = { name, fullName, logoLink } 
             const newCollege = await CollegeModel.create(collegeData)
 
             res.status(201).send({ status: true, message: `College created successfully`, data: newCollege });
@@ -76,12 +77,9 @@ const collegeDetails = async function(req, res) {
 
         }
 
-
-        //console.log(collegedetail)
         const ID = collegedetail._id
         console.log(ID)
         const interns = await internModel.find({ collegeId: ID, isDeleted: false }).select({ name: 1, email: 1, mobile: 1 })
-            //console.log(interns)
         if (interns.length === 0) {
             let arr = {
                 name: collegedetail.name,
@@ -99,8 +97,7 @@ const collegeDetails = async function(req, res) {
             logoLink: collegedetail.logoLink,
             interns: interns
         }
-
-
+        
         res.status(200).send({ status: true, data: arr })
     } catch (err) {
         res.status(500).send({ status: false, msg: err.message })

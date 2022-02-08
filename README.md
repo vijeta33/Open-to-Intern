@@ -1,7 +1,5 @@
 ## Open to Intern Project Requirement
 
-## Phase I
-
 ### Models
 - College Model
 ```

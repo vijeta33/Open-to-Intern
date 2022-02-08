@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
 const collegeSchema = new mongoose.Schema({
+
     name: {
         type: String,
         required: true,
@@ -18,19 +19,12 @@ const collegeSchema = new mongoose.Schema({
         required: true
 
     },
-
-    isDeleted: {
+     isDeleted: {
         type: Boolean,
         default: false
     },
 
-
-
-
 }, { timestamps: true })
-
-
-
 
 
 module.exports = mongoose.model('College', collegeSchema)
